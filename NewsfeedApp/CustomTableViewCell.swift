@@ -21,15 +21,16 @@ class CustomTableViewCell: UITableViewCell {
 
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    var item: RSSItem! {
-        didSet {
-            titleLabel.text = item.title
-            categoryLabel.text = item.category
-            dateLabel.text = item.pubdateString
-            descriptionLabel.text = item.description
-            
-        }
-    }
+    var item: RSSItem!
+//    {
+//        didSet {
+//            titleLabel.text = item.title
+//            categoryLabel.text = item.category
+//            dateLabel.text = item.pubdateString
+//            descriptionLabel.text = item.description
+//            
+//        }
+//    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

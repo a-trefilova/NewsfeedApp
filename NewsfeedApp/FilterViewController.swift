@@ -56,6 +56,7 @@ class FilterViewController: UITableViewController {
             //print("\(filteredCategories)")
             let mainVC = segue.destination as! MainViewController
             mainVC.chosenCategories = filteredCategories
+            mainVC.table.reloadData()
             
         }
         

@@ -54,7 +54,7 @@ class DetailViewController: UIViewController {
     
     func fetchImage() {
         
-        NetworkingManager.downloadImage(url: currentRssItem.enclosure.url) { (data) in
+        NetworkingManager.downloadImage(url: currentRssItem.enclosure) { (data) in
             guard !data.isEmpty else {
                 DispatchQueue.main.async {
                     self.imageView.isHidden = true

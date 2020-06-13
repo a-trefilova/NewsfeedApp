@@ -7,23 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyXMLParser
 
-struct RSSItem {
-    let title: String
-    let link: String
-    let description: String
-    let category: String
-    let enclosure: Enclosure
-    let fullText: String
-    let pubdateString: String
-}
-
-struct Enclosure {
-    let url: String
-    let type: String
-    let width: Int
-    let height: Int
-}
 
 class FeedParser: NSObject, XMLParserDelegate {
 
@@ -52,10 +38,35 @@ class FeedParser: NSObject, XMLParserDelegate {
     private var currentFullText: String = ""
     
     private var parserCompletionHandler: (([RSSItem]) -> Void)?
+    private var parsCompletionHandler: (([RSSItem]) -> Void)?
     
     func parseFeed(url: String, completionHandler: (([RSSItem]) -> Void)? ) {
         self.parserCompletionHandler = completionHandler
+        URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
+        let request = URLRequest(url: URL(string: url)!)
+        let urlSession = URLSession.shared
+        let task = urlSession.dataTask(with: request) { (data, response, error) in
+            guard let data = data else {
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                
+                return
+            }
+            
+            let parser = XMLParser(data: data)
+            parser.delegate = self
+            parser.parse()
+        }
         
+        task.resume()
+        
+        
+    }
+    
+    func updateFeed(url: String, completionHandler: (([RSSItem]) -> Void)? ) {
+        self.parsCompletionHandler = completionHandler
+         URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
         let request = URLRequest(url: URL(string: url)!)
         let urlSession = URLSession.shared
         let task = urlSession.dataTask(with: request) { (data, response, error) in
@@ -142,14 +153,20 @@ class FeedParser: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "item" {
            
+//            let rssItem = RSSItem(title: currentTitle,
+//                                  link: currentLink,
+//                                  description: currentDescription,
+//                                  category: currentCategory,
+//                                  enclosure: Enclosure(url: currentImageUrl,
+//                                                       type: currentImageType,
+//                                                       width: Int(currentImageWidth) ?? 00,
+//                                                       height: Int(currentImageHeight) ?? 00),
+//                                  fullText: currentFullText,
+//                                  pubdateString: currentPubdateString)
             let rssItem = RSSItem(title: currentTitle,
-                                  link: currentLink,
                                   description: currentDescription,
                                   category: currentCategory,
-                                  enclosure: Enclosure(url: currentImageUrl,
-                                                       type: currentImageType,
-                                                       width: Int(currentImageWidth) ?? 00,
-                                                       height: Int(currentImageHeight) ?? 00),
+                                  enclosure: currentImageUrl,
                                   fullText: currentFullText,
                                   pubdateString: currentPubdateString)
             self.rssItems.append(rssItem)
@@ -165,6 +182,7 @@ class FeedParser: NSObject, XMLParserDelegate {
     
     func parserDidEndDocument(_ parser: XMLParser) {
         parserCompletionHandler?(rssItems)
+        parsCompletionHandler?(rssItems)
         
     }
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
@@ -205,3 +223,40 @@ class NetworkingManager {
     }
 }
 
+
+class NetworkManager {
+    let urlString = "https://www.vesti.ru/vesti.rss"
+    static let shared = NetworkManager()
+    
+    private init () {}
+    
+    func fetchData(targetVC:  UIViewController, handler: @escaping ([RSSItem]?) -> ()) {
+        URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
+        AF.request(urlString).response { (response) in
+            if let error = response.error {
+                print(error.localizedDescription)
+            }
+            if let data = response.data {
+                let parsedData = self.parseXML(from: data)
+                DispatchQueue.main.async {
+                    handler(parsedData)
+                }
+            }
+             
+        }
+    }
+    
+    func parseXML(from data: Data) -> [RSSItem]? {
+        let xml = XML.parse(data)
+        let path = ["rss", "channel", "item"]
+        let rssItems = xml[path].map { RSSItem.init(title: $0["title"].text ?? "",
+                                                    description: $0["description"].text ?? "",
+                                                    category: $0["category"].text ?? "",
+                                                    enclosure: $0["enclosure"].attributes["url"] ?? "",
+                                                    fullText: $0["yandex:full-text"].text ?? "",
+                                                    pubdateString: $0["pubDate"].text ?? "")
+        }
+        return rssItems
+    }
+    
+}

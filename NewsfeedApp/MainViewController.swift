@@ -14,14 +14,15 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var isSorted = false
     
-    //@IBOutlet weak var filterButton: UIBarButtonItem!
     
     private let url = "https://www.vesti.ru/vesti.rss"
     
     private var rssItems: [RSSItem]? {
         didSet {
             DispatchQueue.main.async {
+                
                 self.table.reloadData()
+                print("data reloaded")
             }
         }
     }
@@ -30,12 +31,27 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var chosenCategories = [""]
     
+    var chosenItems: [RSSItem]?
+//    {
+//        didSet {
+//            DispatchQueue.main.async {
+//
+//                self.table.reloadData()
+//                print("data reloaded")
+//            }
+//        }
+//    }
+    
+    
     var refreshControl = UIRefreshControl()
 
     
     
     @objc func refresh (sender: UIRefreshControl) {
+       // refreshControl.beginRefreshing()
+        //getData()
         fetchData()
+       //updateData()
     }
     
     override func viewDidLoad() {
@@ -51,16 +67,36 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     private func fetchData() {
        let feedParser = FeedParser()
-        feedParser.parseFeed(url: url) { (rssItems) in
-            self.rssItems = rssItems
+        feedParser.parseFeed(url: url) {[weak self] (rssItems) in
+            self?.rssItems = rssItems
             DispatchQueue.main.async {
-                self.refreshControl.endRefreshing()
+                self?.refreshControl.endRefreshing()
                 //self.table.reloadData()
             }
         }
         
     }
-    
+//    
+//    private func updateData() {
+//       let feedParser = FeedParser()
+//        feedParser.updateFeed(url: url) { (rssItems) in
+//            self.rssItems = rssItems
+//            //print(rssItems)
+//            DispatchQueue.main.async {
+//                self.refreshControl.endRefreshing()
+//                //self.table.reloadData()
+//            }
+//        }
+//        
+//    }
+//    
+//    private func getData() {
+//        NetworkManager.shared.fetchData(targetVC: self) {[weak self] (rssItems) in
+//            guard rssItems != nil else { return }
+//            self?.rssItems = rssItems
+//            self?.refreshControl.endRefreshing()
+//        }
+//    }
     
     
     
@@ -99,37 +135,38 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
-        if let item = rssItems?[indexPath.item], !isSorted {
+        guard let item = rssItems?[indexPath.item], item != nil else { return cell }
+            
+         if !isSorted {
          cell.item = item
+            cell.titleLabel.text = item.title
+            cell.categoryLabel.text = item.category
+            cell.descriptionLabel.text = item.description
+            cell.dateLabel.text = item.pubdateString
+         return cell
             
         } else if isSorted {
-            let item = rssItems?[indexPath.item]
-            if chosenCategories.contains(item?.category ?? "") {
-               
-            cell.item = item
+            chosenItems = [RSSItem]()
+//            guard let item = rssItems?[indexPath.item]  else {return cell}
+            guard let rssItems = rssItems  else { return cell }
+            for item in rssItems{
+            if chosenCategories.contains(item.category ) {
+                chosenItems?.append(item)
+                
             }
+            }
+                let choosenItem = chosenItems?[indexPath.row]
+                cell.item = choosenItem
+                cell.titleLabel.text = choosenItem?.title
+                cell.categoryLabel.text = choosenItem?.category
+                cell.descriptionLabel.text = choosenItem?.description
+                cell.dateLabel.text = choosenItem?.pubdateString
+                return cell
+                
+            
         }
         
-       
-//            for everyCategory in chosenCategories {
-//                if item?.category == everyCategory {
-//                    cell.item = item
-//                }
-//            }
-
-        
-        
-        
-//        if !isSorted{
-//            if let item = rssItems?[indexPath.item] {
-//            cell.item = item
-//
-//            }
-//        }
-        
-       
-    
-        return cell
+       return cell
         
     }
     
@@ -160,17 +197,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             detailVC.currentRssItem = rssItem
             
         }
-//         if segue.identifier == "showFilters" {
-//            sortingArray()
-//            //guard let indexPath = table.indexPathForSelectedRow else { return }
-////            let currentCategory = categories?[indexPath.row] ?? ""
-//            let filterVC = segue.destination as! FilterViewController
-//            filterVC.arrayOfcategories = categories ?? [""]
-//
-//
-//
-//
-//        }
+
     }
     
     
