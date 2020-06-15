@@ -25,21 +25,35 @@ class DetailViewController: UIViewController {
         }
     }
     
-  
     
+   // @IBOutlet weak var fullTextLabel: UILabel!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var fullTextView: UITextView!
+    
     var currentRssItem: RSSItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
     
         loadData()
-        
+//        fullTextLabel.numberOfLines = 0
+//        fullTextLabel.bottomAnchor.constraint(equalToSystemSpacingBelow: scrollView.bottomAnchor, multiplier: 8).isActive = true
+//        fullTextLabel.lineBreakMode = .byWordWrapping
+//        fullTextLabel.sizeToFit()
         // Do any additional setup after loading the view.
     }
     
-    
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height+300)
+//        fullTextLabel.numberOfLines = 0
+////        fullTextLabel.bottomAnchor.constraint(equalToSystemSpacingBelow: scrollView.bottomAnchor, multiplier: 8).isActive = true
+//        fullTextLabel.lineBreakMode = .byWordWrapping
+//        fullTextLabel.sizeToFit()
+ 
+    }
+   
     
     func loadData() {
         titleLabel.text = currentRssItem.title
@@ -50,7 +64,7 @@ class DetailViewController: UIViewController {
         
     }
     
-    
+  
     
     func fetchImage() {
         
@@ -64,8 +78,7 @@ class DetailViewController: UIViewController {
                 
                 return }
             self.imageView.image = UIImage(data: data)
-//            self.imageView.widthAnchor.constraint(equalToConstant: CGFloat(self.currentRssItem.enclosure.width)).isActive = true
-//            self.imageView.heightAnchor.constraint(equalToConstant: CGFloat(self.currentRssItem.enclosure.height)).isActive = true
+
         }
         
         
