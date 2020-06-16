@@ -382,29 +382,28 @@
                                             <outlet property="categoryRssLabel" destination="Scs-bC-uaj" id="waz-bX-MdT"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FulltextCell" rowHeight="1000" id="ORH-dR-MWG" customClass="FullTextViewCell" customModule="NewsfeedApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="364.5" width="414" height="1000"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FulltextCell" translatesAutoresizingMaskIntoConstraints="NO" id="ORH-dR-MWG" customClass="FullTextViewCell" customModule="NewsfeedApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="364.5" width="414" height="998"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ORH-dR-MWG" id="wfZ-ew-gPT">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="1000"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ORH-dR-MWG" translatesAutoresizingMaskIntoConstraints="NO" id="wfZ-ew-gPT">
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="998"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CqY-ha-0w0">
-                                                    <rect key="frame" x="20" y="11" width="374" height="989"/>
+                                                    <rect key="frame" x="20" y="11" width="363" height="494"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="CqY-ha-0w0" firstAttribute="top" secondItem="wfZ-ew-gPT" secondAttribute="top" constant="11" id="Nb9-8K-2CD"/>
+                                                <constraint firstItem="CqY-ha-0w0" firstAttribute="leading" secondItem="wfZ-ew-gPT" secondAttribute="leading" constant="20" id="8ng-o7-cRo"/>
+                                                <constraint firstItem="CqY-ha-0w0" firstAttribute="height" secondItem="wfZ-ew-gPT" secondAttribute="height" multiplier="0.49499" id="Cxh-wl-2Bq"/>
+                                                <constraint firstItem="CqY-ha-0w0" firstAttribute="width" secondItem="wfZ-ew-gPT" secondAttribute="width" multiplier="0.947781" id="JTZ-ry-2O2"/>
+                                                <constraint firstAttribute="trailing" secondItem="CqY-ha-0w0" secondAttribute="trailing" id="dJk-NT-0V2"/>
+                                                <constraint firstItem="CqY-ha-0w0" firstAttribute="top" secondItem="wfZ-ew-gPT" secondAttribute="top" constant="11" id="e5R-Ei-ulG"/>
+                                                <constraint firstAttribute="bottom" secondItem="CqY-ha-0w0" secondAttribute="bottom" constant="493" id="kfk-Ln-Xdd"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="CqY-ha-0w0" secondAttribute="bottom" id="8RL-lr-Q0U"/>
-                                            <constraint firstItem="CqY-ha-0w0" firstAttribute="leading" secondItem="ORH-dR-MWG" secondAttribute="leading" constant="20" id="L4G-2k-kj0"/>
-                                            <constraint firstAttribute="trailing" secondItem="CqY-ha-0w0" secondAttribute="trailing" constant="20" id="kZe-Ma-q86"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="fulltextRssLabel" destination="CqY-ha-0w0" id="DiG-KT-rOr"/>
                                         </connections>

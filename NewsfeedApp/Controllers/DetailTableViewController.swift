@@ -11,22 +11,17 @@ import UIKit
 class DetailTableViewController: UITableViewController {
 
     @IBOutlet weak var imageCell: ImageViewCell!
-    
     @IBOutlet weak var titleCell: TitleViewCell!
-    
     @IBOutlet weak var categoryCell: CategoryViewCell!
     @IBOutlet weak var fullTextCell: FullTextViewCell!
     
-    
     var currentRssItem: RSSItem! {
         didSet {
-            print(currentRssItem)
+            //print(currentRssItem)
         }
     }
     
-    override func viewDidLoad() {
-        
-            
+    override func viewDidLoad() {            
         super.viewDidLoad()
         setup()
 //        self.tableView.register(ImageViewCell.self, forCellReuseIdentifier: ImageViewCell.reusableIdentifier)
@@ -81,8 +76,19 @@ class DetailTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 4
     }
+            
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+                tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
 
-  
+        func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+                  return 80 // Give estimated Height Fo rRow here
+    }
+
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return UITableView.automaticDimension
+    }
 //    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: ImageViewCell.reusableIdentifier, for: indexPath) as! ImageViewCell
 //        switch indexPath.row {

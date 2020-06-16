@@ -38,7 +38,7 @@ class FilterViewController: UITableViewController {
             let filteredCategories = FilterCell.arrayOfChoosenCategories
             let mainVC = segue.destination as! MainViewController
             mainVC.chosenCategories = filteredCategories
-            mainVC.table.reloadData()
+            //mainVC.table.reloadData()
         }
     }
     

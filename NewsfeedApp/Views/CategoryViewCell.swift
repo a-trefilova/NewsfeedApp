@@ -14,15 +14,7 @@ class CategoryViewCell: UITableViewCell {
 
     @IBOutlet weak var categoryRssLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    class func reuseID() -> String {
+        return NSStringFromClass(CategoryViewCell.self).components(separatedBy: ".").last!
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

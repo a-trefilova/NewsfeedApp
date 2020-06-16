@@ -21,7 +21,6 @@ class FilterCell: UITableViewCell {
 //        }
 //    }
     @IBOutlet weak var switchState: UISwitch!
-    
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var switchOff: UISwitch! 
     
@@ -34,21 +33,6 @@ class FilterCell: UITableViewCell {
         categoryIsChosen = true
         //callback?(sender.isOn)
         let category = categoryLabel.text
-//        print("categoryIsChanged")
-//        print("\(category)")
         FilterCell.arrayOfChoosenCategories.append(category ?? "")
-        //print("\(FilterCell.arrayOfCategories)")
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

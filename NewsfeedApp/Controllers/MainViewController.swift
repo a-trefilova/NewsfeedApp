@@ -36,7 +36,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var refreshControl = UIRefreshControl()
 
     @objc func refresh (sender: UIRefreshControl) {
-        fetchData()
+        //fetchData()
+        updateData()
     }
     
     override func viewDidLoad() {
@@ -64,10 +65,20 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
 
+    func updateData() {
+        let feedParser = FeedParser()
+        feedParser.updateFeed(url: url) { (rssItems) in
+            self.isSorted = false
+            self.rssItems = rssItems
+            DispatchQueue.main.async {
+                self.refreshControl.endRefreshing()
+            }
+        }
+    }
+    
     @IBAction func filterButtonTapped(_ sender: UIBarButtonItem) {
         sortingArray()
         chosenCategories = []
-        print("\(chosenCategories)")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let secondVC = storyboard.instantiateViewController(withIdentifier: "FilterViewController") as! FilterViewController
         secondVC.arrayOfcategories = categories ?? [""]
@@ -91,14 +102,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isSorted {
-            guard let chosenItems = chosenItems else { return 0}
+            guard let chosenItems = chosenItems else { return 0 }
             return chosenItems.count}
         guard let rssItems = rssItems else { return 0 }
         return rssItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //chosenItems = [RSSItem]()
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
         
             
@@ -112,22 +122,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
          return cell
             
         } else if isSorted {
-            chosenItems = [RSSItem]()
-            guard let rssItems = rssItems  else { return cell }
+//            chosenItems = [RSSItem]()
+//            guard let rssItems = rssItems  else { return cell }
 //
-////            for item in rssItems{
-////                if chosenCategories.contains(item.category ) {
-////                       chosenItems?.append(item)
-////                }
-////            }
-//
-            for item in rssItems{
-                if FilterCell.arrayOfChoosenCategories.contains(item.category ) {
-                   chosenItems?.append(item)
-                }
-            }
-            
-            print("\(FilterCell.arrayOfChoosenCategories)")
+//            for item in rssItems{
+//                if FilterCell.arrayOfChoosenCategories.contains(item.category ) {
+//                   chosenItems?.append(item)
+//                }
+//            }
             
             guard let choosenItem = chosenItems?[indexPath.row] else { return cell }
             cell.item = choosenItem
@@ -136,12 +138,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.descriptionLabel.text = choosenItem.description
             cell.dateLabel.text = choosenItem.pubdateString
             return cell
-                
-            
         }
-        
        return cell
-        
     }
     
     
@@ -150,7 +148,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    
         return 180
     }
     
@@ -180,6 +177,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         if chosenCategories != [""] , chosenCategories != [] {
             isSorted = true
+            chosenItems = [RSSItem]()
+            guard let rssItems = rssItems  else { return }
+
+            for item in rssItems{
+                if FilterCell.arrayOfChoosenCategories.contains(item.category ) {
+                   chosenItems?.append(item)
+                }
+            }
+            table.reloadData()
+            
         }
      }
 
