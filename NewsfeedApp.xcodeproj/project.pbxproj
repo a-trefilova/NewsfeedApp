@@ -16,6 +16,7 @@
 		123520052497AE2A00AEF74B /* TitleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123520042497AE2A00AEF74B /* TitleViewCell.swift */; };
 		123520072497AE3E00AEF74B /* CategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123520062497AE3E00AEF74B /* CategoryViewCell.swift */; };
 		123520092497AE5000AEF74B /* FullTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123520082497AE5000AEF74B /* FullTextViewCell.swift */; };
+		123520132499595E00AEF74B /* LabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123520122499595E00AEF74B /* LabelExtension.swift */; };
 		1240F7942490E0FC0088CCAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1240F7932490E0FC0088CCAF /* AppDelegate.swift */; };
 		1240F7962490E0FC0088CCAF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1240F7952490E0FC0088CCAF /* SceneDelegate.swift */; };
 		1240F7982490E0FC0088CCAF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1240F7972490E0FC0088CCAF /* MainViewController.swift */; };
@@ -24,7 +25,6 @@
 		1240F7A02490E0FF0088CCAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1240F79E2490E0FF0088CCAF /* LaunchScreen.storyboard */; };
 		1240F7A82490E1A40088CCAF /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1240F7A72490E1A40088CCAF /* CustomTableViewCell.swift */; };
 		1240F7AA2490E2AB0088CCAF /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1240F7A92490E2AB0088CCAF /* XMLParser.swift */; };
-		1240F7AE249108800088CCAF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1240F7AD249108800088CCAF /* DetailViewController.swift */; };
 		1240F7D62492D8340088CCAF /* RSSItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1240F7D52492D8340088CCAF /* RSSItemModel.swift */; };
 		12DE39D624976BC400C6BA5A /* Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE39D524976BC300C6BA5A /* Testing.swift */; };
 		E8BF3078645E674E4BCE0EB7 /* Pods_NewsfeedApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1255C92F9968D0E769CDEEA /* Pods_NewsfeedApp.framework */; };
@@ -40,6 +40,7 @@
 		123520042497AE2A00AEF74B /* TitleViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewCell.swift; sourceTree = "<group>"; };
 		123520062497AE3E00AEF74B /* CategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
 		123520082497AE5000AEF74B /* FullTextViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullTextViewCell.swift; sourceTree = "<group>"; };
+		123520122499595E00AEF74B /* LabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtension.swift; sourceTree = "<group>"; };
 		1240F7902490E0FC0088CCAF /* NewsfeedApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsfeedApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1240F7932490E0FC0088CCAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1240F7952490E0FC0088CCAF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,7 +51,6 @@
 		1240F7A12490E0FF0088CCAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1240F7A72490E1A40088CCAF /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		1240F7A92490E2AB0088CCAF /* XMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
-		1240F7AD249108800088CCAF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		1240F7D52492D8340088CCAF /* RSSItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSItemModel.swift; sourceTree = "<group>"; };
 		12DE39D524976BC300C6BA5A /* Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testing.swift; sourceTree = "<group>"; };
 		631FF6056B95CA7E2506247B /* Pods-NewsfeedApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsfeedApp.release.xcconfig"; path = "Target Support Files/Pods-NewsfeedApp/Pods-NewsfeedApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -95,7 +95,6 @@
 			isa = PBXGroup;
 			children = (
 				1240F7972490E0FC0088CCAF /* MainViewController.swift */,
-				1240F7AD249108800088CCAF /* DetailViewController.swift */,
 				121457472493DA9D009D34B0 /* FilterViewController.swift */,
 				123520002497ADE500AEF74B /* DetailTableViewController.swift */,
 			);
@@ -125,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				12351FFE2497747600AEF74B /* ArrayExtension.swift */,
+				123520122499595E00AEF74B /* LabelExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -280,6 +280,7 @@
 			files = (
 				1240F7D62492D8340088CCAF /* RSSItemModel.swift in Sources */,
 				1240F7982490E0FC0088CCAF /* MainViewController.swift in Sources */,
+				123520132499595E00AEF74B /* LabelExtension.swift in Sources */,
 				12DE39D624976BC400C6BA5A /* Testing.swift in Sources */,
 				12351FFF2497747600AEF74B /* ArrayExtension.swift in Sources */,
 				121457482493DA9D009D34B0 /* FilterViewController.swift in Sources */,
@@ -294,7 +295,6 @@
 				123520012497ADE500AEF74B /* DetailTableViewController.swift in Sources */,
 				1240F7AA2490E2AB0088CCAF /* XMLParser.swift in Sources */,
 				1214574A2493EF25009D34B0 /* FilterCell.swift in Sources */,
-				1240F7AE249108800088CCAF /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

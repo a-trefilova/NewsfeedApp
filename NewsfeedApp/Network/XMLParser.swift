@@ -15,8 +15,8 @@ class FeedParser: NSObject, XMLParserDelegate {
     private var currentTitle: String = ""
     private var currentDescription: String = ""
     private var currentCategory: String = ""
-    private var currentImageUrl = ""
-    private var currentPubdateString = ""
+    private var currentImageUrl: String = ""
+    private var currentPubdateString: String = ""
     private var currentFullText: String = ""
     
     private var parserCompletionHandler: (([RSSItem]) -> Void)?

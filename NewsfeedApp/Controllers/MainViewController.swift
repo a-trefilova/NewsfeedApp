@@ -122,15 +122,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
          return cell
             
         } else if isSorted {
-//            chosenItems = [RSSItem]()
-//            guard let rssItems = rssItems  else { return cell }
-//
-//            for item in rssItems{
-//                if FilterCell.arrayOfChoosenCategories.contains(item.category ) {
-//                   chosenItems?.append(item)
-//                }
-//            }
-            
+
             guard let choosenItem = chosenItems?[indexPath.row] else { return cell }
             cell.item = choosenItem
             cell.titleLabel.text = choosenItem.title
@@ -194,14 +186,4 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 
 
 
-extension UILabel {
 
-    func retrieveTextHeight () -> CGFloat {
-        let attributedText = NSAttributedString(string: self.text!, attributes: [NSAttributedString.Key.font : self.font])
-
-        let rect = attributedText.boundingRect(with: CGSize(width: self.frame.size.width, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, context: nil)
-
-        return ceil(rect.size.height)
-    }
-
-}
