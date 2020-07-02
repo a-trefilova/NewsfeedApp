@@ -29,7 +29,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     var categories: [String]?
     
-    var chosenCategories = [""]
+    var chosenCategories = ["Сбросить все"]
     
     var chosenItems: [RSSItem]?
 
@@ -167,7 +167,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
 
-        if chosenCategories != [""] , chosenCategories != [] {
+        if chosenCategories != ["Сбросить все"] , chosenCategories != [] {
             isSorted = true
             chosenItems = [RSSItem]()
             guard let rssItems = rssItems  else { return }
@@ -179,6 +179,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             table.reloadData()
             
+        } else if chosenCategories == ["Сбросить все"]  {
+            isSorted = false
+            table.reloadData()
         }
      }
 

@@ -13,6 +13,7 @@ class FilterViewController: UITableViewController {
  
     var arrayOfcategories: [String]? {
         didSet{
+            arrayOfcategories?.append("Сбросить все")
             tableView.reloadData()
         }
     }
