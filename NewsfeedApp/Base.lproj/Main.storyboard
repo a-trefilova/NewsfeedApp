@@ -187,103 +187,88 @@
         <scene sceneID="W32-2A-g4s">
             <objects>
                 <tableViewController id="YQ9-0P-VAW" customClass="DetailTableViewController" customModule="NewsfeedApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="uSQ-GB-yPg">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uSQ-GB-yPg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
-                            <tableViewSection id="kZV-DN-eUg">
+                            <tableViewSection id="mI3-kL-yxG">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImageCell" rowHeight="207" id="NHk-SR-cOV" customClass="ImageViewCell" customModule="NewsfeedApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="207"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImageCell" id="NHk-SR-cOV" customClass="ImageViewCell" customModule="NewsfeedApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NHk-SR-cOV" id="9h3-Rg-zU5">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="207"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zdv-SM-8Rf">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="207"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zdv-SM-8Rf">
+                                                    <rect key="frame" x="10" y="10" width="394" height="24"/>
                                                 </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Ent-Ob-yQc">
+                                                    <rect key="frame" x="184" y="12" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="zdv-SM-8Rf" firstAttribute="centerX" secondItem="9h3-Rg-zU5" secondAttribute="centerX" id="Nqc-9n-xw4"/>
-                                                <constraint firstItem="zdv-SM-8Rf" firstAttribute="centerY" secondItem="9h3-Rg-zU5" secondAttribute="centerY" id="W45-bY-Joj"/>
-                                                <constraint firstItem="zdv-SM-8Rf" firstAttribute="width" secondItem="9h3-Rg-zU5" secondAttribute="height" multiplier="374:207" id="qH4-a9-pyd"/>
+                                                <constraint firstItem="zdv-SM-8Rf" firstAttribute="leading" secondItem="9h3-Rg-zU5" secondAttribute="leading" constant="10" id="BOp-fg-Xgo"/>
+                                                <constraint firstItem="Ent-Ob-yQc" firstAttribute="centerY" secondItem="9h3-Rg-zU5" secondAttribute="centerY" id="SVT-cn-qUe"/>
+                                                <constraint firstItem="zdv-SM-8Rf" firstAttribute="top" secondItem="9h3-Rg-zU5" secondAttribute="top" constant="10" id="T7v-Fe-kR1"/>
+                                                <constraint firstAttribute="bottom" secondItem="zdv-SM-8Rf" secondAttribute="bottom" constant="10" id="bV8-F2-zLu"/>
+                                                <constraint firstItem="Ent-Ob-yQc" firstAttribute="centerX" secondItem="9h3-Rg-zU5" secondAttribute="centerX" constant="-13" id="wB1-Ky-OFB"/>
+                                                <constraint firstAttribute="trailing" secondItem="zdv-SM-8Rf" secondAttribute="trailing" constant="10" id="xsu-9a-ERq"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="rssImage" destination="zdv-SM-8Rf" id="Ib3-0Y-8CW"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TitleCell" rowHeight="86" id="iXd-Z3-bSc" customClass="TitleViewCell" customModule="NewsfeedApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="235" width="414" height="86"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TitleCell" id="iXd-Z3-bSc" customClass="TitleViewCell" customModule="NewsfeedApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iXd-Z3-bSc" id="JKe-Ga-Vhi">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="86"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFR-dg-FWC">
-                                                    <rect key="frame" x="20" y="1" width="374" height="84"/>
+                                                    <rect key="frame" x="20" y="10" width="374" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="LFR-dg-FWC" secondAttribute="bottom" constant="1" id="Bvx-cP-nuy"/>
-                                                <constraint firstAttribute="trailing" secondItem="LFR-dg-FWC" secondAttribute="trailing" constant="20" id="PkG-zJ-CCr"/>
-                                                <constraint firstItem="LFR-dg-FWC" firstAttribute="top" secondItem="JKe-Ga-Vhi" secondAttribute="top" constant="1" id="PtX-DW-mfY"/>
-                                                <constraint firstItem="LFR-dg-FWC" firstAttribute="leading" secondItem="JKe-Ga-Vhi" secondAttribute="leading" constant="20" id="Uz7-aQ-Y7g"/>
+                                                <constraint firstItem="LFR-dg-FWC" firstAttribute="top" secondItem="JKe-Ga-Vhi" secondAttribute="top" constant="10" id="CzP-O2-SKg"/>
+                                                <constraint firstAttribute="bottom" secondItem="LFR-dg-FWC" secondAttribute="bottom" constant="10" id="KSJ-g1-NfD"/>
+                                                <constraint firstAttribute="trailing" secondItem="LFR-dg-FWC" secondAttribute="trailing" constant="20" id="KyK-0J-n7B"/>
+                                                <constraint firstItem="LFR-dg-FWC" firstAttribute="leading" secondItem="JKe-Ga-Vhi" secondAttribute="leading" constant="20" id="yyI-Wf-KQP"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="titleRssLabel" destination="LFR-dg-FWC" id="WrT-VD-nfo"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" id="ysv-eP-1KB" customClass="CategoryViewCell" customModule="NewsfeedApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="321" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FulltextCell" id="11c-iA-foB" userLabel="FullTextCell" customClass="FullTextViewCell" customModule="NewsfeedApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="116" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ysv-eP-1KB" id="cSz-S0-rQn">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="11c-iA-foB" id="5gV-3w-Ukd">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scs-bC-uaj">
-                                                    <rect key="frame" x="20" y="11" width="374" height="33"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="categoryRssLabel" destination="Scs-bC-uaj" id="waz-bX-MdT"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FulltextCell" translatesAutoresizingMaskIntoConstraints="NO" id="ORH-dR-MWG" customClass="FullTextViewCell" customModule="NewsfeedApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="364.5" width="414" height="998"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ORH-dR-MWG" translatesAutoresizingMaskIntoConstraints="NO" id="wfZ-ew-gPT">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="998"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CqY-ha-0w0">
-                                                    <rect key="frame" x="20" y="11" width="363" height="494"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FfN-At-YsQ" userLabel="Full Text Label">
+                                                    <rect key="frame" x="20" y="10" width="374" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="CqY-ha-0w0" firstAttribute="leading" secondItem="wfZ-ew-gPT" secondAttribute="leading" constant="20" id="8ng-o7-cRo"/>
-                                                <constraint firstItem="CqY-ha-0w0" firstAttribute="height" secondItem="wfZ-ew-gPT" secondAttribute="height" multiplier="0.49499" id="Cxh-wl-2Bq"/>
-                                                <constraint firstItem="CqY-ha-0w0" firstAttribute="width" secondItem="wfZ-ew-gPT" secondAttribute="width" multiplier="0.947781" id="JTZ-ry-2O2"/>
-                                                <constraint firstAttribute="trailing" secondItem="CqY-ha-0w0" secondAttribute="trailing" id="dJk-NT-0V2"/>
-                                                <constraint firstItem="CqY-ha-0w0" firstAttribute="top" secondItem="wfZ-ew-gPT" secondAttribute="top" constant="11" id="e5R-Ei-ulG"/>
-                                                <constraint firstAttribute="bottom" secondItem="CqY-ha-0w0" secondAttribute="bottom" constant="493" id="kfk-Ln-Xdd"/>
+                                                <constraint firstItem="FfN-At-YsQ" firstAttribute="leading" secondItem="5gV-3w-Ukd" secondAttribute="leading" constant="20" id="We5-NZ-ub1"/>
+                                                <constraint firstAttribute="bottom" secondItem="FfN-At-YsQ" secondAttribute="bottom" id="hQi-J2-LpW"/>
+                                                <constraint firstItem="FfN-At-YsQ" firstAttribute="top" secondItem="5gV-3w-Ukd" secondAttribute="top" constant="10" id="oma-um-qga"/>
+                                                <constraint firstAttribute="trailing" secondItem="FfN-At-YsQ" secondAttribute="trailing" constant="20" id="xph-d4-Mug"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="fulltextRssLabel" destination="CqY-ha-0w0" id="DiG-KT-rOr"/>
+                                            <outlet property="fulltextRssLabel" destination="FfN-At-YsQ" id="OZq-bI-Q7W"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -296,10 +281,14 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="9aL-Cc-Fg2"/>
                     <connections>
-                        <outlet property="categoryCell" destination="ysv-eP-1KB" id="aDO-uz-eVc"/>
-                        <outlet property="fullTextCell" destination="ORH-dR-MWG" id="yIT-eZ-Kuf"/>
+                        <outlet property="activityIndicator" destination="Ent-Ob-yQc" id="S0e-xM-ONx"/>
+                        <outlet property="fullTextCell" destination="11c-iA-foB" id="Fu8-MB-B9f"/>
+                        <outlet property="fullTextLabel" destination="FfN-At-YsQ" id="XX9-l2-CWm"/>
                         <outlet property="imageCell" destination="NHk-SR-cOV" id="R3b-nE-epV"/>
+                        <outlet property="rssImageView" destination="zdv-SM-8Rf" id="GAf-yQ-Z0L"/>
+                        <outlet property="tableView" destination="uSQ-GB-yPg" id="7g1-0a-Ian"/>
                         <outlet property="titleCell" destination="iXd-Z3-bSc" id="UBb-BG-S9G"/>
+                        <outlet property="titleRssLabel" destination="LFR-dg-FWC" id="7cp-wA-jvb"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5gX-jx-ec1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

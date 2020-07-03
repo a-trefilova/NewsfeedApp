@@ -12,6 +12,6 @@ class TitleViewCell: UITableViewCell {
     
     static let reusableIdentifier = "TitleCell"
 
-    @IBOutlet weak var titleRssLabel: UILabel!
+   @IBOutlet weak var titleRssLabel: UILabel!
 
 }

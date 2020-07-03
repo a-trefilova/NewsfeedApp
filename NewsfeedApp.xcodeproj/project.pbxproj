@@ -14,7 +14,6 @@
 		123520012497ADE500AEF74B /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123520002497ADE500AEF74B /* DetailTableViewController.swift */; };
 		123520032497AE1D00AEF74B /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123520022497AE1D00AEF74B /* ImageViewCell.swift */; };
 		123520052497AE2A00AEF74B /* TitleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123520042497AE2A00AEF74B /* TitleViewCell.swift */; };
-		123520072497AE3E00AEF74B /* CategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123520062497AE3E00AEF74B /* CategoryViewCell.swift */; };
 		123520092497AE5000AEF74B /* FullTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123520082497AE5000AEF74B /* FullTextViewCell.swift */; };
 		123520132499595E00AEF74B /* LabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123520122499595E00AEF74B /* LabelExtension.swift */; };
 		1240F7942490E0FC0088CCAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1240F7932490E0FC0088CCAF /* AppDelegate.swift */; };
@@ -36,7 +35,6 @@
 		123520002497ADE500AEF74B /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		123520022497AE1D00AEF74B /* ImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
 		123520042497AE2A00AEF74B /* TitleViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewCell.swift; sourceTree = "<group>"; };
-		123520062497AE3E00AEF74B /* CategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
 		123520082497AE5000AEF74B /* FullTextViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullTextViewCell.swift; sourceTree = "<group>"; };
 		123520122499595E00AEF74B /* LabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtension.swift; sourceTree = "<group>"; };
 		1240F7902490E0FC0088CCAF /* NewsfeedApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsfeedApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,7 +76,6 @@
 				1240F7A72490E1A40088CCAF /* CustomTableViewCell.swift */,
 				123520022497AE1D00AEF74B /* ImageViewCell.swift */,
 				123520042497AE2A00AEF74B /* TitleViewCell.swift */,
-				123520062497AE3E00AEF74B /* CategoryViewCell.swift */,
 				123520082497AE5000AEF74B /* FullTextViewCell.swift */,
 			);
 			path = Views;
@@ -243,7 +240,6 @@
 				1240F7A82490E1A40088CCAF /* CustomTableViewCell.swift in Sources */,
 				12351FFC2497741100AEF74B /* ImageDownloader.swift in Sources */,
 				123520032497AE1D00AEF74B /* ImageViewCell.swift in Sources */,
-				123520072497AE3E00AEF74B /* CategoryViewCell.swift in Sources */,
 				1240F7962490E0FC0088CCAF /* SceneDelegate.swift in Sources */,
 				123520092497AE5000AEF74B /* FullTextViewCell.swift in Sources */,
 				123520012497ADE500AEF74B /* DetailTableViewController.swift in Sources */,

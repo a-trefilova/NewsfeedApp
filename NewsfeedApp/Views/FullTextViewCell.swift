@@ -12,6 +12,6 @@ class FullTextViewCell: UITableViewCell {
     
     static let reusableIdentifier = "FulltextCell"
     
-    @IBOutlet weak var fulltextRssLabel: UILabel!
+  @IBOutlet weak var fulltextRssLabel: UILabel! 
 
 }

@@ -12,6 +12,7 @@ class ImageViewCell: UITableViewCell {
     
     static let reusableIdentifier = "ImageCell"
     
-    @IBOutlet weak var rssImage: UIImageView!
+   @IBOutlet weak var rssImage: UIImageView!
 
+   
 }

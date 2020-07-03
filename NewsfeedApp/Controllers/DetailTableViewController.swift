@@ -9,78 +9,70 @@
 import UIKit
 
 class DetailTableViewController: UITableViewController {
-
+    
     @IBOutlet weak var imageCell: ImageViewCell!
     @IBOutlet weak var titleCell: TitleViewCell!
-    @IBOutlet weak var categoryCell: CategoryViewCell!
     @IBOutlet weak var fullTextCell: FullTextViewCell!
     
-    var currentRssItem: RSSItem! {
-        didSet {
-            //print(currentRssItem)
-        }
-    }
+    @IBOutlet weak var rssImageView: UIImageView!
+    @IBOutlet weak var titleRssLabel: UILabel!
+    @IBOutlet weak var fullTextLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    private let numberOfSections: Int = 1
+    private let numberOfRowsInSection: Int = 3
+    
+    var currentRssItem: RSSItem!
     
     override func viewDidLoad() {            
         super.viewDidLoad()
-        setup()
-
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        rssImageView.isHidden = true
+        
+        setUpWithOutlets()
     }
     
-        func setup() {
-            let url = currentRssItem.enclosure
-            NetworkingManager.downloadImage(url: url) { (data) in
-            guard !data.isEmpty else {
-                DispatchQueue.main.async {
-                    self.imageCell.rssImage.isHidden = true
+    private func setUpWithOutlets() {
+        let url = currentRssItem.enclosure
+        NetworkingManager.downloadImage(url: url) {[unowned self] (data) in
+            DispatchQueue.main.async {
+                self.rssImageView.image = UIImage(data: data)
+                self.rssImageView.layer.cornerRadius = 10
+                self.rssImageView.layer.shadowOpacity = 0.4
+                
+                self.rssImageView.isHidden = false
+                self.activityIndicator.isHidden = true
+                self.tableView.reloadData()
             }
-                return
-            }
-                self.imageCell.rssImage.image = UIImage(data: data)
-                self.imageCell.rssImage.layer.cornerRadius = 10
-                self.imageCell.rssImage.layer.shadowOpacity = 0.4
-                
-                
-                self.titleCell.titleRssLabel.text = self.currentRssItem.title
-                self.titleCell.titleRssLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-                self.titleCell.titleRssLabel.numberOfLines = 0
-                self.titleCell.titleRssLabel.lineBreakMode = .byWordWrapping
-                
-                self.categoryCell.categoryRssLabel.text = self.currentRssItem.category
-                
-                
-                self.fullTextCell.fulltextRssLabel.text = self.currentRssItem.fullText
-                self.fullTextCell.fulltextRssLabel.numberOfLines = 0
-                self.fullTextCell.fulltextRssLabel.lineBreakMode = .byWordWrapping
-                self.fullTextCell.fulltextRssLabel.contentMode = .topLeft
         }
+        self.titleRssLabel.text = currentRssItem.title
+        self.titleRssLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        self.fullTextLabel.text = currentRssItem.fullText
+    }
     
     
-
     // MARK: - Table view data source
 
-        func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return numberOfSections
     }
 
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return numberOfRowsInSection
+        
     }
             
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
                 tableView.deselectRow(at: indexPath, animated: true)
+                
     }
     
-
-        func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-                  return 80 // Give estimated Height Fo rRow here
-    }
-
-        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return UITableView.automaticDimension
-    }
-
-}
+      
 }
