@@ -13,30 +13,22 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var table: UITableView!
     
     var isSorted = false
-    
-    
+    var categories: [String]?
+    var chosenCategories = ["Сбросить все"]
+    var chosenItems: [RSSItem]?
+    var refreshControl = UIRefreshControl()
+    private let heightForRow: CGFloat = 180
     private let url = "https://www.vesti.ru/vesti.rss"
-    
     private var rssItems: [RSSItem]? {
         didSet {
             DispatchQueue.main.async {
-                
                 self.table.reloadData()
                 print("data reloaded")
             }
         }
     }
 
-    var categories: [String]?
-    
-    var chosenCategories = ["Сбросить все"]
-    
-    var chosenItems: [RSSItem]?
-
-    var refreshControl = UIRefreshControl()
-
     @objc func refresh (sender: UIRefreshControl) {
-        //fetchData()
         updateData()
     }
     
@@ -59,13 +51,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             self?.rssItems = rssItems
             DispatchQueue.main.async {
                 self?.refreshControl.endRefreshing()
-                //self.table.reloadData()
             }
         }
-        
     }
 
-    func updateData() {
+    private func updateData() {
         let feedParser = FeedParser()
         feedParser.updateFeed(url: url) { (rssItems) in
             self.isSorted = false
@@ -99,7 +89,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-    
+   //MARK: - Table View Data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isSorted {
             guard let chosenItems = chosenItems else { return 0 }
@@ -140,12 +130,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
+        return heightForRow
     }
     
     
     
-    //MARK: NAVIGATION
+    //MARK: - NAVIGATION
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
