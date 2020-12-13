@@ -29,13 +29,13 @@ class FeedItemsListViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         self.table.refreshControl = refreshControl
-        fetchData()
+        table.tableFooterView = UIView()
+        navigationController?.navigationBar.topItem?.title = "Свежие новости"
+        DispatchQueue.global(qos: .userInteractive).async {
+            self.fetchData()
+        }
+        
 
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-       // FilterCell.arrayOfChoosenCategories = []
     }
 
     private func fetchData() {
@@ -182,7 +182,7 @@ class FeedItemsListViewController: UIViewController, UITableViewDelegate, UITabl
             table.reloadData()
             
         }
-        if chosenCategories == ["Сбросить все"] || chosenCategories == [""]  {
+        if chosenCategories == ["Сбросить все"] || chosenCategories == [""] || chosenCategories == ["", "Сбросить все"] || chosenCategories == ["Сбросить все", ""] {
             isSorted = false
             table.reloadData()
         }

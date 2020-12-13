@@ -60,7 +60,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Categories" id="DIP-GH-0vD">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="sjJ-Ea-Lfp">
+                        <barButtonItem key="rightBarButtonItem" title="Готово" id="sjJ-Ea-Lfp">
+                            <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="doneButtonTappedWith_sender:" destination="KMS-vZ-tS7" id="e66-eL-AOk"/>
                             </connections>
@@ -168,7 +169,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="hTe-Hm-Uwa">
-                        <barButtonItem key="leftBarButtonItem" title="Filter" id="yYP-ON-B5F">
+                        <barButtonItem key="leftBarButtonItem" title="Фильтр" id="yYP-ON-B5F">
+                            <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="filterButtonTapped:" destination="BYZ-38-t0r" id="gzi-4k-5Eg"/>
                             </connections>

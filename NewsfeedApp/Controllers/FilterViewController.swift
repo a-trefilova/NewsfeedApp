@@ -16,6 +16,8 @@ class FilterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.reloadData()
+        tableView.tableFooterView = UIView()
+        navigationController?.navigationBar.topItem?.title = "Категории"
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -57,9 +59,6 @@ class FilterViewController: UITableViewController {
         if cell.categoryLabel.text == "Сбросить все" && cell.switchState.isOn == true {
             arrayOfCategoriesAlreadyChoosen = []
             
-        }
-        if cell.switchState.isOn == true {
-            arrayOfCategoriesAlreadyChoosen?.append(cell.categoryLabel.text ?? "")
         }
         return cell
     }
