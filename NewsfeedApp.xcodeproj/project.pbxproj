@@ -122,6 +122,7 @@
 		1240F7872490E0FC0088CCAF = {
 			isa = PBXGroup;
 			children = (
+				D6FC58DF2586A6A5009555F8 /* Screenshots */,
 				1240F7922490E0FC0088CCAF /* NewsfeedApp */,
 				1240F7912490E0FC0088CCAF /* Products */,
 				324EC2D7F32057CF3545713E /* Pods */,
@@ -157,6 +158,13 @@
 			children = (
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D6FC58DF2586A6A5009555F8 /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Screenshots;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
