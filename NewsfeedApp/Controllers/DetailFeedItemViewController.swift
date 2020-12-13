@@ -1,18 +1,11 @@
-//
-//  DetailTableViewController.swift
-//  NewsfeedApp
-//
-//  Created by Константин Сабицкий on 15.06.2020.
-//  Copyright © 2020 Константин Сабицкий. All rights reserved.
-//
 
 import UIKit
 
-class DetailTableViewController: UITableViewController {
+class DetailFeedItemViewController: UITableViewController {
     
-    @IBOutlet weak var imageCell: ImageViewCell!
-    @IBOutlet weak var titleCell: TitleViewCell!
-    @IBOutlet weak var fullTextCell: FullTextViewCell!
+    @IBOutlet weak var imageCell: DetailFeedItemImageViewCell!
+    @IBOutlet weak var titleCell: DetailFeedItemTitleViewCell!
+    @IBOutlet weak var fullTextCell: DetailFeedItemFullTextViewCell!
     
     @IBOutlet weak var rssImageView: UIImageView!
     @IBOutlet weak var titleRssLabel: UILabel!

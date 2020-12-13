@@ -1,10 +1,3 @@
-//
-//  FilterViewController.swift
-//  NewsfeedApp
-//
-//  Created by Константин Сабицкий on 12.06.2020.
-//  Copyright © 2020 Константин Сабицкий. All rights reserved.
-//
 
 import UIKit
 
@@ -18,11 +11,17 @@ class FilterViewController: UITableViewController {
         }
     }
     
+    var arrayOfCategoriesAlreadyChoosen: [String]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.reloadData()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
 
     @IBAction func doneButtonTapped(_sender: UIBarButtonItem) {
         performSegue(withIdentifier: "unwindSegue", sender: self)
@@ -33,13 +32,9 @@ class FilterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unwindSegue" {
             let filteredCategories = FilterCell.arrayOfChoosenCategories
-            let mainVC = segue.destination as! MainViewController
+            let mainVC = segue.destination as! FeedItemsListViewController
             mainVC.chosenCategories = filteredCategories
         }
-    }
-    
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        return true
     }
 
     
@@ -56,6 +51,16 @@ class FilterViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! FilterCell
         let category = arrayOfcategories?[indexPath.row]
         cell.categoryLabel.text = category
+        if arrayOfCategoriesAlreadyChoosen?.contains(category ?? "") ?? false {
+            cell.switchState.isOn = true
+        }
+        if cell.categoryLabel.text == "Сбросить все" && cell.switchState.isOn == true {
+            arrayOfCategoriesAlreadyChoosen = []
+            
+        }
+        if cell.switchState.isOn == true {
+            arrayOfCategoriesAlreadyChoosen?.append(cell.categoryLabel.text ?? "")
+        }
         return cell
     }
 

@@ -1,10 +1,3 @@
-//
-//  ViewModels .swift
-//  NewsfeedApp
-//
-//  Created by Константин Сабицкий on 12.06.2020.
-//  Copyright © 2020 Константин Сабицкий. All rights reserved.
-//
 
 import UIKit
 

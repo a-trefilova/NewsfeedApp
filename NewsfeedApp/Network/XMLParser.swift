@@ -1,13 +1,5 @@
-//
-//  XMLParser.swift
-//  NewsfeedApp
-//
-//  Created by Константин Сабицкий on 10.06.2020.
-//  Copyright © 2020 Константин Сабицкий. All rights reserved.
-//
 
 import UIKit
-
 
 class FeedParser: NSObject, XMLParserDelegate {
     private var rssItems: [RSSItem] = []
@@ -22,7 +14,7 @@ class FeedParser: NSObject, XMLParserDelegate {
     private var parserCompletionHandler: (([RSSItem]) -> Void)?
     private var parsCompletionHandler: (([RSSItem]) -> Void)?
     
-    func parseFeed(url: String, completionHandler: (([RSSItem]) -> Void)? ) {
+    func parseFeed(url: String, completionHandler: (([RSSItem]) -> Void)?, completionError: @escaping (Error?) -> Void ) {
         self.parserCompletionHandler = completionHandler
         URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
         let request = URLRequest(url: URL(string: url)!)
@@ -30,6 +22,7 @@ class FeedParser: NSObject, XMLParserDelegate {
         let task = urlSession.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
                 if let error = error {
+                    completionError(error)
                     print(error.localizedDescription)
                 }
                 

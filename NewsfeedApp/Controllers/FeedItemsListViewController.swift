@@ -1,14 +1,7 @@
-//
-//  ViewController.swift
-//  NewsfeedApp
-//
-//  Created by Константин Сабицкий on 10.06.2020.
-//  Copyright © 2020 Константин Сабицкий. All rights reserved.
-//
 
 import UIKit
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FeedItemsListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var table: UITableView!
     
@@ -18,7 +11,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var chosenItems: [RSSItem]?
     var refreshControl = UIRefreshControl()
     private let heightForRow: CGFloat = 180
-    private let url = "https://www.vesti.ru/vesti.rss"
+    private let url = Datasource.url
     private var rssItems: [RSSItem]? {
         didSet {
             DispatchQueue.main.async {
@@ -42,40 +35,42 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        FilterCell.arrayOfChoosenCategories = []
+       // FilterCell.arrayOfChoosenCategories = []
     }
 
     private func fetchData() {
        let feedParser = FeedParser()
-        feedParser.parseFeed(url: url) {[weak self] (rssItems) in
+        feedParser.parseFeed(url: url, completionHandler: {[weak self] (rssItems) in
             self?.rssItems = rssItems
             DispatchQueue.main.async {
                 self?.refreshControl.endRefreshing()
             }
+        }) { [weak self] (error) in
+            if let error = error {
+                let alertController = UIAlertController(title: "Network Connection Error", message: error.localizedDescription, preferredStyle: .alert)
+                let alertAction = UIAlertAction(title: "Ok, wait", style: .destructive) {[weak self] _ in
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        self?.updateData()
+                    }
+                    
+                }
+                alertController.addAction(alertAction)
+                DispatchQueue.main.async {
+                    self?.present(alertController, animated: true, completion: nil)
+                }
+                
+            }
         }
+        
     }
 
     private func updateData() {
-        let feedParser = FeedParser()
-        feedParser.updateFeed(url: url) { (rssItems) in
-            self.isSorted = false
-            self.rssItems = rssItems
-            DispatchQueue.main.async {
-                self.refreshControl.endRefreshing()
-            }
-        }
+        refreshControl.beginRefreshing()
+        fetchData()
+        refreshControl.endRefreshing()
     }
     
-    @IBAction func filterButtonTapped(_ sender: UIBarButtonItem) {
-        sortingArray()
-        chosenCategories = []
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(withIdentifier: "FilterViewController") as! FilterViewController
-        secondVC.arrayOfcategories = categories ?? [""]
-        self.navigationController?.pushViewController(secondVC, animated: true)
-    }
-    
-  
     
     func sortingArray() {
         var arrayOfAllCategories = [""]
@@ -89,6 +84,23 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
+    @IBAction func filterButtonTapped(_ sender: UIBarButtonItem) {
+        sortingArray()
+        //chosenCategories = []
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(withIdentifier: "FilterViewController") as! FilterViewController
+        secondVC.arrayOfcategories = categories ?? [""]
+        chosenCategories.removeAll { (string) -> Bool in
+            string == "Сбросить все" 
+        }
+        secondVC.arrayOfCategoriesAlreadyChoosen = chosenCategories
+        self.navigationController?.pushViewController(secondVC, animated: true)
+    }
+    
+  
+   
+    
+    
    //MARK: - Table View Data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isSorted {
@@ -99,7 +111,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedItemCell
         
             
          if !isSorted {
@@ -142,12 +154,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             guard let indexPath = table.indexPathForSelectedRow else { return }
             if !isSorted {
                 let rssItem = rssItems![indexPath.row]
-                let detailVC = segue.destination as! DetailTableViewController
+                let detailVC = segue.destination as! DetailFeedItemViewController
                 detailVC.currentRssItem = rssItem
             }
             if isSorted {
                 let chosenItem = chosenItems?[indexPath.row]
-                let detailVC = segue.destination as! DetailTableViewController
+                let detailVC = segue.destination as! DetailFeedItemViewController
                 detailVC.currentRssItem = chosenItem
             }
         }
@@ -169,14 +181,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             table.reloadData()
             
-        } else if chosenCategories == ["Сбросить все"]  {
+        }
+        if chosenCategories == ["Сбросить все"] || chosenCategories == [""]  {
             isSorted = false
             table.reloadData()
         }
      }
 
 }
-
-
 
 

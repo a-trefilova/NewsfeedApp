@@ -1,26 +1,31 @@
-//
-//  FilterCell.swift
-//  NewsfeedApp
-//
-//  Created by Константин Сабицкий on 12.06.2020.
-//  Copyright © 2020 Константин Сабицкий. All rights reserved.
-//
 
 import UIKit
 
 class FilterCell: UITableViewCell {
     
     @IBOutlet weak var switchState: UISwitch!
-    @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var switchOff: UISwitch! 
+    @IBOutlet weak var categoryLabel: UILabel! 
  
-    static var arrayOfChoosenCategories = [""]
+    static var arrayOfChoosenCategories = [""] {
+        didSet {
+            print(arrayOfChoosenCategories)
+        }
+    }
     var categoryIsChosen = false
     
     
     @IBAction func switchOnTapped(_ sender: UISwitch) {
-        categoryIsChosen = true
-        let category = categoryLabel.text
-        FilterCell.arrayOfChoosenCategories.append(category ?? "")
+        categoryIsChosen = !categoryIsChosen
+        guard let category = categoryLabel.text else { return }
+        if categoryIsChosen == true && !FilterCell.arrayOfChoosenCategories.contains(category)  {
+         FilterCell.arrayOfChoosenCategories.append(category)
+            
+        } else {
+         FilterCell.arrayOfChoosenCategories.removeAll { string in
+                string == category
+         }
+        }
+        
     }
+    
 }
