@@ -21,7 +21,7 @@ class DetailFeedItemViewController: UITableViewController {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        
+        tableView.separatorStyle = .none
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         rssImageView.isHidden = true

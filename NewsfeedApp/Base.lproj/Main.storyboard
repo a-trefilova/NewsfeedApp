@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Categories-->
+        <!--Категории-->
         <scene sceneID="Zrp-fq-m0H">
             <objects>
                 <tableViewController storyboardIdentifier="FilterViewController" id="KMS-vZ-tS7" customClass="FilterViewController" customModule="NewsfeedApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -59,7 +59,7 @@
                             <outlet property="delegate" destination="KMS-vZ-tS7" id="3y3-1v-JNh"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Categories" id="DIP-GH-0vD">
+                    <navigationItem key="navigationItem" title="Категории" id="DIP-GH-0vD">
                         <barButtonItem key="rightBarButtonItem" title="Готово" id="sjJ-Ea-Lfp">
                             <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>

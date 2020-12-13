@@ -10,6 +10,15 @@ class FeedParser: NSObject, XMLParserDelegate {
     private var currentImageUrl: String = ""
     private var currentPubdateString: String = ""
     private var currentFullText: String = ""
+    private var dictForDays = ["Sun": "Вс",
+                                "Mon": "Пн",
+                                "Tue": "Вт",
+                                "Wed": "Ср",
+                                "Thu": "Чт",
+                                "Fri": "Пт",
+                                "Sat": "Сб"]
+    
+    
     
     private var parserCompletionHandler: (([RSSItem]) -> Void)?
     private var parsCompletionHandler: (([RSSItem]) -> Void)?
@@ -98,7 +107,8 @@ class FeedParser: NSObject, XMLParserDelegate {
         case "yandex:full-text": currentFullText += string
         case "pubDate":
             currentPubdateString += string
-            currentPubdateString = String(currentPubdateString.dropLast(8))
+            currentPubdateString = String(currentPubdateString.dropLast(9))
+            
         default:
             break
         }
@@ -106,6 +116,7 @@ class FeedParser: NSObject, XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "item" {
+
             let rssItem = RSSItem(title: currentTitle,
                                   description: currentDescription,
                                   category: currentCategory,
